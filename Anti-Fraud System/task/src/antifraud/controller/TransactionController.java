@@ -1,5 +1,7 @@
-package antifraud;
+package antifraud.controller;
 
+import antifraud.entity.TransType;
+import antifraud.entity.Transaction;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

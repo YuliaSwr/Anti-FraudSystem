@@ -484,37 +484,13 @@ files:
         };
     }
   learner_created: false
-- name: src/antifraud/Transaction.java
+- name: src/antifraud/security/WebSecurityConfig.java
   visible: true
-  text: |
-    package antifraud;
-
-    import lombok.AllArgsConstructor;
-    import lombok.Getter;
-    import lombok.NoArgsConstructor;
-    import lombok.Setter;
-    import org.springframework.format.annotation.NumberFormat;
-
-    import javax.validation.constraints.NotNull;
-
-    @Setter
-    @Getter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public class Transaction {
-
-        @NumberFormat
-        private Long amount;
-
-        public Long getAmount() {
-            if (amount==null) {
-                return 0L;
-            }
-            return amount;
-        }
-    }
   learner_created: true
-- name: src/antifraud/TransactionController.java
+- name: src/antifraud/security/RestAuthenticationEntryPoint.java
+  visible: true
+  learner_created: true
+- name: src/antifraud/controller/TransactionController.java
   visible: true
   text: |
     package antifraud;
@@ -547,7 +523,40 @@ files:
         }
     }
   learner_created: true
-- name: src/antifraud/TransType.java
+- name: src/antifraud/controller/UserController.java
+  visible: true
+  learner_created: true
+- name: src/antifraud/entity/Transaction.java
+  visible: true
+  text: |
+    package antifraud;
+
+    import lombok.AllArgsConstructor;
+    import lombok.Getter;
+    import lombok.NoArgsConstructor;
+    import lombok.Setter;
+    import org.springframework.format.annotation.NumberFormat;
+
+    import javax.validation.constraints.NotNull;
+
+    @Setter
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public class Transaction {
+
+        @NumberFormat
+        private Long amount;
+
+        public Long getAmount() {
+            if (amount==null) {
+                return 0L;
+            }
+            return amount;
+        }
+    }
+  learner_created: true
+- name: src/antifraud/entity/TransType.java
   visible: true
   text: |
     package antifraud;
@@ -558,6 +567,18 @@ files:
         MANUAL_PROCESSING
     }
   learner_created: true
+- name: src/antifraud/repository/UserRepository.java
+  visible: true
+  learner_created: true
+- name: src/antifraud/service/UserService.java
+  visible: true
+  learner_created: true
+- name: src/antifraud/entity/AppUser.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/18068#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Wed, 20 Apr 2022 19:13:30 UTC
 record: -1
