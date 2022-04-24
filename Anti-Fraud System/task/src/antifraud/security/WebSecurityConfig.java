@@ -1,5 +1,6 @@
 package antifraud.security;
 
+import antifraud.entity.UserRole;
 import antifraud.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -26,8 +27,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests() // manage access
                 .antMatchers("/actuator/shutdown").permitAll() // needs to run test
                 .antMatchers(HttpMethod.POST, "/api/auth/user").permitAll()
-                .antMatchers(HttpMethod.DELETE, "/api/auth/user/").authenticated()
-                .antMatchers("/api/auth/list").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/api/auth/user/").hasAnyRole(UserRole.ADMINISTRATOR.name())
+                .antMatchers(HttpMethod.PUT, "/api/auth/role").hasAnyRole(UserRole.ADMINISTRATOR.name())
+                .antMatchers(HttpMethod.POST, "/api/antifraud/transaction").hasAnyRole(UserRole.MERCHANT.name())
+                .antMatchers(HttpMethod.GET, "/api/auth/list").hasAnyRole(UserRole.ADMINISTRATOR.name(), UserRole.SUPPORT.name())
+                .antMatchers(HttpMethod.POST, "/api/antifraud/access").hasAnyRole(UserRole.ADMINISTRATOR.name())
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS); // no session

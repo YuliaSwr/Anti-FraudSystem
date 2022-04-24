@@ -16,7 +16,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-    private Object Map;
 
     @PostMapping("/api/auth/user")
     public ResponseEntity register(@RequestBody AppUser user) {

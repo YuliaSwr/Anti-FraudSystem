@@ -576,9 +576,12 @@ files:
 - name: src/antifraud/entity/AppUser.java
   visible: true
   learner_created: true
+- name: src/antifraud/entity/UserRole.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/18068#comment
 status: Solved
 feedback:
   message: Congratulations!
-  time: Wed, 20 Apr 2022 19:13:30 UTC
-record: -1
+  time: Sun, 24 Apr 2022 09:25:56 UTC
+record: 2

@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.NumberFormat;
 
-import javax.validation.constraints.NotNull;
 
 @Setter
 @Getter

@@ -14,4 +14,6 @@ public interface UserRepository extends CrudRepository<AppUser, Long> {
     List<AppUser> findAll();
 
     Optional<AppUser> findByUsernameIgnoreCase(String username);
+
+    long count();
 }

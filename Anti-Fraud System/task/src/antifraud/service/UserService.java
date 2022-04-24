@@ -1,6 +1,7 @@
 package antifraud.service;
 
 import antifraud.entity.AppUser;
+import antifraud.entity.UserRole;
 import antifraud.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,6 +36,13 @@ public class UserService implements UserDetailsService {
             throw new ResponseStatusException(HttpStatus.CONFLICT);
         }
 
+        if (userRepository.count() == 0) {
+            user.setRole(UserRole.ADMINISTRATOR);
+            user.setLocked(false);
+        } else {
+            user.setRole(UserRole.MERCHANT);
+        }
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
@@ -52,5 +60,24 @@ public class UserService implements UserDetailsService {
 
     public List<AppUser> getAll() {
         return userRepository.findAll();
+    }
+
+    public AppUser changeRole(String username, String role) {
+        AppUser user = userRepository.findByUsernameIgnoreCase(username)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        if (role.equals(user.getRole().name())) {
+           throw new ResponseStatusException(HttpStatus.CONFLICT);
+        }
+
+        if (role.equals(UserRole.SUPPORT.name())) {
+            user.setRole(UserRole.SUPPORT);
+        }
+
+        if (role.equals(UserRole.ADMINISTRATOR.name())) {
+            user.setRole(UserRole.ADMINISTRATOR);
+        }
+
+        return user;
     }
 }
