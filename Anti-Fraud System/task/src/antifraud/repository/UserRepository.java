@@ -2,7 +2,6 @@ package antifraud.repository;
 
 import antifraud.entity.AppUser;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

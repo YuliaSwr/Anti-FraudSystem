@@ -18,20 +18,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserService userService;
 
-    public void configure(HttpSecurity http) throws Exception {
-        http.httpBasic()
-                .authenticationEntryPoint(new RestAuthenticationEntryPoint()) // Handles auth error
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .mvcMatchers("/actuator/shutdown").permitAll() // needs to run test
+                .mvcMatchers(HttpMethod.POST, "/api/auth/user").permitAll()
+                .mvcMatchers(HttpMethod.DELETE, "/api/auth/user/*").hasRole(UserRole.ADMINISTRATOR.name())
+                .mvcMatchers(HttpMethod.GET, "/api/auth/list").hasAnyRole(UserRole.ADMINISTRATOR.name(), UserRole.SUPPORT.name())
+                .mvcMatchers(HttpMethod.POST, "/api/antifraud/transaction").hasRole(UserRole.MERCHANT.name())
+                .mvcMatchers(HttpMethod.PUT, "/api/auth/access").hasRole(UserRole.ADMINISTRATOR.name())
+                .mvcMatchers(HttpMethod.PUT, "/api/auth/role").hasRole(UserRole.ADMINISTRATOR.name())
+                .mvcMatchers(HttpMethod.POST, "/api/antifraud/transaction").hasRole(UserRole.MERCHANT.name())
+                .mvcMatchers(HttpMethod.DELETE,"/api/antifraud/suspicious-ip/*").hasRole(UserRole.SUPPORT.name())
+                .mvcMatchers(HttpMethod.GET,"/api/antifraud/suspicious-ip").hasRole(UserRole.SUPPORT.name())
+                .mvcMatchers(HttpMethod.POST,"/api/antifraud/suspicious-ip").hasRole(UserRole.SUPPORT.name())
+                .mvcMatchers("/api/antifraud/stolencard").hasRole(UserRole.SUPPORT.name())
+                .anyRequest().authenticated()
+                .and()
+                .httpBasic()
                 .and()
                 .csrf().disable().headers().frameOptions().disable() // for Postman, the H2 console
-                .and()
-                .authorizeRequests() // manage access
-                .antMatchers("/actuator/shutdown").permitAll() // needs to run test
-                .antMatchers(HttpMethod.POST, "/api/auth/user").permitAll()
-                .antMatchers(HttpMethod.DELETE, "/api/auth/user/").hasAnyRole(UserRole.ADMINISTRATOR.name())
-                .antMatchers(HttpMethod.PUT, "/api/auth/role").hasAnyRole(UserRole.ADMINISTRATOR.name())
-                .antMatchers(HttpMethod.POST, "/api/antifraud/transaction").hasAnyRole(UserRole.MERCHANT.name())
-                .antMatchers(HttpMethod.GET, "/api/auth/list").hasAnyRole(UserRole.ADMINISTRATOR.name(), UserRole.SUPPORT.name())
-                .antMatchers(HttpMethod.POST, "/api/antifraud/access").hasAnyRole(UserRole.ADMINISTRATOR.name())
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS); // no session

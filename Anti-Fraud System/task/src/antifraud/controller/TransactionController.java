@@ -1,31 +1,25 @@
 package antifraud.controller;
 
-import antifraud.entity.TransType;
+import antifraud.entity.IP;
 import antifraud.entity.Transaction;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
+import antifraud.service.IPService;
+import antifraud.service.TransactionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
 
 import java.util.Map;
 
 @RestController
 public class TransactionController {
 
+    @Autowired
+    private TransactionService transactionService;
+
+
     @PostMapping("/api/antifraud/transaction")
     public Map<String, String> analyzeTrans(@RequestBody Transaction transaction) {
-
-        if (transaction.getAmount() <= 0) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
-
-        if (transaction.getAmount() <= 200) {
-            return Map.of("result", TransType.ALLOWED.name());
-        } else if (transaction.getAmount() > 200 && transaction.getAmount() <= 1500) {
-            return Map.of("result", TransType.MANUAL_PROCESSING.name());
-        } else {
-            return Map.of("result", TransType.PROHIBITED.name());
-        }
+        return transactionService.transe(transaction);
     }
+
 }

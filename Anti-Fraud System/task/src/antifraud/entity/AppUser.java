@@ -21,6 +21,7 @@ import java.util.Collections;
 @Getter
 @Setter
 @Entity
+@Table(name = "user")
 public class AppUser implements UserDetails {
 
     @SequenceGenerator(
@@ -34,26 +35,40 @@ public class AppUser implements UserDetails {
             generator = "user_sequence"
     )
     private Long id;
+
     @NotNull
     @NotEmpty
     private String name;
+
+    @NotNull
     @NotEmpty
     private String username;
+
     @NotNull
     @NotEmpty
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    @NotEmpty
+    @JsonIgnore
+    private boolean locked = true;
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    private boolean locked = true;
+    @JsonIgnore
+    private Boolean nonLock;
+
+    public AppUser(String name, String username, String password) {
+        this.name = name;
+        this.username = username;
+        this.password = password;
+    }
 
     @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority authority =
-                new SimpleGrantedAuthority(role.name());
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + role.name());
         return Collections.singletonList(authority);
     }
 

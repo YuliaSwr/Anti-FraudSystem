@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.NumberFormat;
 
+import javax.validation.constraints.Pattern;
+
 
 @Setter
 @Getter
@@ -22,4 +24,9 @@ public class Transaction {
         }
         return amount;
     }
+
+    @Pattern(regexp = "^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)(\\.(?!$)|$)){4}$")
+    private String ip;
+
+    private String number;
 }
