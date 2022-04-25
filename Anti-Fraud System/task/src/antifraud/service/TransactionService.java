@@ -2,6 +2,7 @@ package antifraud.service;
 
 import antifraud.entity.TransType;
 import antifraud.entity.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -13,17 +14,14 @@ import java.util.Map;
 @Service
 public class TransactionService {
 
-    private final CardService cardService;
+    @Autowired
+    private CardService cardService;
 
-    private final IPService ipService;
+    @Autowired
+    private IPService ipService;
 
     private TransType transType;
     private List<String> info;
-
-    public TransactionService(CardService cardService, IPService ipService) {
-        this.cardService = cardService;
-        this.ipService = ipService;
-    }
 
     public Map<String, String> transe(Transaction transaction) {
         transType = TransType.PROHIBITED;

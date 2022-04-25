@@ -2,6 +2,7 @@ package antifraud.controller;
 
 import antifraud.entity.Card;
 import antifraud.service.CardService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,11 +14,8 @@ import java.util.Map;
 @RequestMapping("/api/antifraud/stolencard")
 public class CardController {
 
-    private final CardService cardService;
-
-    public CardController(CardService cardService) {
-        this.cardService = cardService;
-    }
+    @Autowired
+    private CardService cardService;
 
     @PostMapping()
     public ResponseEntity<Card> addStolenCard(@RequestBody Map<String, String> request) {

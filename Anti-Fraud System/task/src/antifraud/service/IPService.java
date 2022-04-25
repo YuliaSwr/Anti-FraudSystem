@@ -2,6 +2,7 @@ package antifraud.service;
 
 import antifraud.entity.IP;
 import antifraud.repository.IpRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -12,11 +13,8 @@ import java.util.regex.Pattern;
 @Service
 public class IPService {
 
-    private final IpRepository ipRepository;
-
-    public IPService(IpRepository ipRepository) {
-        this.ipRepository = ipRepository;
-    }
+    @Autowired
+    private IpRepository ipRepository;
 
     public IP addSuspiciousIP(String ip) {
         checkIP(ip);

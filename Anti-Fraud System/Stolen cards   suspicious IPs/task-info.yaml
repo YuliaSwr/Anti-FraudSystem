@@ -1583,8 +1583,8 @@ files:
   visible: true
   learner_created: true
 feedback_link: https://hyperskill.org/learn/step/18070#comment
-status: Failed
+status: Solved
 feedback:
-  message: Compilation Failed
-  time: Mon, 25 Apr 2022 16:19:59 UTC
+  message: Congratulations!
+  time: Mon, 25 Apr 2022 16:30:10 UTC
 record: -1
