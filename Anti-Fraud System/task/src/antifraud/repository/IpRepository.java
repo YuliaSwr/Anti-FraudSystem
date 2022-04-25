@@ -1,6 +1,6 @@
 package antifraud.repository;
 
-import antifraud.entity.SuspIp;
+import antifraud.entity.IP;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -10,11 +10,11 @@ import java.util.Optional;
 
 @Repository
 @EnableJpaRepositories
-public interface IpRepository extends CrudRepository<SuspIp, Long> {
+public interface IpRepository extends CrudRepository<IP, Long> {
 
-    Optional<SuspIp> findByIp(String ip);
+    Optional<IP> findByIp(String ip);
 
-    List<SuspIp> findAll();
+    List<IP> findAll();
 
     boolean existsByIp(String ip);
 }

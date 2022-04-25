@@ -1,8 +1,7 @@
 package antifraud.controller;
 
-import antifraud.entity.SuspIp;
+import antifraud.entity.IP;
 import antifraud.service.IPService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,11 +12,14 @@ import java.util.Map;
 @RequestMapping("/api/antifraud/suspicious-ip")
 public class IpController {
 
-    @Autowired
-    private IPService ipService;
+    private final IPService ipService;
+
+    public IpController(IPService ipService) {
+        this.ipService = ipService;
+    }
 
     @PostMapping()
-    public ResponseEntity<SuspIp> addSuspiciousIP(@RequestBody Map<String, String> request) {
+    public ResponseEntity<IP> addSuspiciousIP(@RequestBody Map<String, String> request) {
         String ip = request.get("ip");
         return ResponseEntity.ok(ipService.addSuspiciousIP(ip));
     }
@@ -30,7 +32,7 @@ public class IpController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<SuspIp>> getAllSuspiciousIP() {
+    public ResponseEntity<List<IP>> getAllSuspiciousIP() {
         return ResponseEntity.ok(ipService.getAllSuspiciousIP());
     }
 }

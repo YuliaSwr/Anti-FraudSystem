@@ -16,7 +16,7 @@ import javax.validation.constraints.Pattern;
 @Getter
 @Setter
 @Entity
-public class SuspIp {
+public class IP {
 
     @SequenceGenerator(
             name = "ip_sequence",
@@ -35,7 +35,7 @@ public class SuspIp {
     @Pattern(regexp = "^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)(\\.(?!$)|$)){4}$")
     private String ip;
 
-    public SuspIp(String ip) {
+    public IP(String ip) {
         this.ip = ip;
     }
 }

@@ -1570,9 +1570,6 @@ files:
 - name: src/antifraud/service/CardService.java
   visible: true
   learner_created: true
-- name: src/antifraud/entity/SuspIp.java
-  visible: true
-  learner_created: true
 - name: src/antifraud/controller/IpController.java
   visible: true
   learner_created: true
@@ -1582,9 +1579,12 @@ files:
 - name: src/antifraud/controller/CardController.java
   visible: true
   learner_created: true
+- name: src/antifraud/entity/IP.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/18070#comment
-status: Solved
+status: Failed
 feedback:
-  message: Congratulations!
-  time: Mon, 25 Apr 2022 16:16:30 UTC
+  message: Compilation Failed
+  time: Mon, 25 Apr 2022 16:19:59 UTC
 record: -1

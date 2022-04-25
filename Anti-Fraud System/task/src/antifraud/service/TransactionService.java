@@ -2,7 +2,6 @@ package antifraud.service;
 
 import antifraud.entity.TransType;
 import antifraud.entity.Transaction;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -14,17 +13,17 @@ import java.util.Map;
 @Service
 public class TransactionService {
 
-    @Autowired
-    private CardService cardService;
+    private final CardService cardService;
 
-    @Autowired
-    private IPService ipService;
-
-    private final Integer MAX_AMOUNT_FOR_ALLOWED = 200;
-    private final Integer MAX_AMOUNT_FOR_MANUAL_PROCESSING = 1500;
+    private final IPService ipService;
 
     private TransType transType;
     private List<String> info;
+
+    public TransactionService(CardService cardService, IPService ipService) {
+        this.cardService = cardService;
+        this.ipService = ipService;
+    }
 
     public Map<String, String> transe(Transaction transaction) {
         transType = TransType.PROHIBITED;
@@ -53,6 +52,9 @@ public class TransactionService {
         if (amount == null || amount <= 0) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Wrong amount!");
         }
+
+        int MAX_AMOUNT_FOR_ALLOWED = 200;
+        int MAX_AMOUNT_FOR_MANUAL_PROCESSING = 1500;
 
         if (amount > MAX_AMOUNT_FOR_MANUAL_PROCESSING) {
             info.add("amount");

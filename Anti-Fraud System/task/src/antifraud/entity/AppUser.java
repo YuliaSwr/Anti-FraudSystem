@@ -21,7 +21,6 @@ import java.util.Collections;
 @Getter
 @Setter
 @Entity
-@Table(name = "user")
 public class AppUser implements UserDetails {
 
     @SequenceGenerator(
@@ -58,12 +57,6 @@ public class AppUser implements UserDetails {
 
     @JsonIgnore
     private Boolean nonLock;
-
-    public AppUser(String name, String username, String password) {
-        this.name = name;
-        this.username = username;
-        this.password = password;
-    }
 
     @JsonIgnore
     @Override
