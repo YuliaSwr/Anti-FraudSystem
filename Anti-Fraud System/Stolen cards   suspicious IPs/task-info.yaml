@@ -1561,9 +1561,6 @@ files:
 - name: src/antifraud/repository/IPRepository.java
   visible: true
   learner_created: true
-- name: src/antifraud/entity/IP.java
-  visible: true
-  learner_created: true
 - name: src/antifraud/repository/CardRepository.java
   visible: true
   learner_created: true
@@ -1579,6 +1576,9 @@ files:
 - name: src/antifraud/controller/AntifraudController.java
   visible: true
   learner_created: true
+- name: src/antifraud/entity/Ip.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/18070#comment
 status: Failed
 feedback:
@@ -1588,7 +1588,7 @@ feedback:
     GET /api/antifraud/suspicious-ip should respond with status code 200, responded: 404
     Response body:
     {
-      &quot;timestamp&quot; : &quot;2022-04-25T14:22:08.960+00:00&quot;,
+      &quot;timestamp&quot; : &quot;2022-04-25T14:25:52.824+00:00&quot;,
       &quot;status&quot; : 404,
       &quot;error&quot; : &quot;Not Found&quot;,
       &quot;message&quot; : &quot;No message available&quot;,
@@ -1850,5 +1850,5 @@ feedback:
     -----
     Hibernate: select appuser0_.id as id1_2_, appuser0_.locked as locked2_2_, appuser0_.name as name3_2_, appuser0_.non_lock as non_lock4_2_, appuser0_.password as password5_2_, appuser0_.role as role6_2_, appuser0_.username as username7_2_ from user appuser0_ where upper(appuser0_.username)=upper(?)
     Hibernate: select ip0_.id as id1_1_, ip0_.ip as ip2_1_ from ip ip0_
-  time: Mon, 25 Apr 2022 14:22:09 UTC
+  time: Mon, 25 Apr 2022 14:25:55 UTC
 record: -1
