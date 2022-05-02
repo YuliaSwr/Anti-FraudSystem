@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CardService {
@@ -35,8 +36,8 @@ public class CardService {
         return cardRepository.findAll();
     }
 
-    public boolean existInBlacklist(String number) {
-        return cardRepository.existsByNumber(number);
+    public boolean exists(String number) {
+        return cardRepository.findByNumber(number).isPresent();
     }
 
     public void checkNumber(String number) {
@@ -44,8 +45,7 @@ public class CardService {
 
         int nSum = 0;
         boolean isSecond = false;
-        for (int i = nDigits - 1; i >= 0; i--)
-        {
+        for (int i = nDigits - 1; i >= 0; i--) {
             int d = number.charAt(i) - '0';
 
             if (isSecond)

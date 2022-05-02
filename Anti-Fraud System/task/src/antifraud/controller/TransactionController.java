@@ -1,6 +1,7 @@
 package antifraud.controller;
 
 import antifraud.entity.Transaction;
+import antifraud.entity.TransactionResult;
 import antifraud.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,8 +16,8 @@ public class TransactionController {
     private TransactionService transactionService;
 
     @PostMapping("/api/antifraud/transaction")
-    public Map<String, String> analyzeTrans(@RequestBody Transaction transaction) {
-        return transactionService.transe(transaction);
+    public TransactionResult analyzeTrans(@RequestBody Transaction transaction) {
+        return transactionService.processTransaction(transaction);
     }
 
 }

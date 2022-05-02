@@ -37,8 +37,8 @@ public class IPService {
         return ipRepository.findAll();
     }
 
-    public boolean existInBlacklist(String ip) {
-        return ipRepository.existsByIp(ip);
+    public boolean exists(String ip) {
+        return ipRepository.findByIp(ip).isPresent();
     }
 
     public void checkIP(String ip) {

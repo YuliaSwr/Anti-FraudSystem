@@ -52,7 +52,7 @@ public class AppUser implements UserDetails {
     private boolean locked = true;
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     private UserRole role;
 
     @JsonIgnore
