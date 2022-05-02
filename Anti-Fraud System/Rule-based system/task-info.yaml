@@ -1,20 +1,5 @@
 type: edu
 files:
-- name: src/antifraud/AntiFraudApplication.java
-  visible: true
-  text: |-
-    package antifraud;
-
-    import org.springframework.boot.SpringApplication;
-    import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-    @SpringBootApplication
-    public class AntiFraudApplication {
-        public static void main(String[] args) {
-            SpringApplication.run(AntiFraudApplication.class, args);
-        }
-    }
-  learner_created: false
 - name: build.gradle
   visible: true
   text: |-
@@ -2171,9 +2156,24 @@ files:
 - name: src/antifraud/entity/TransactionResult.java
   visible: true
   learner_created: true
+- name: src/antifraud/AntiFraudApplication.java
+  visible: true
+  text: |-
+    package antifraud;
+
+    import org.springframework.boot.SpringApplication;
+    import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+    @SpringBootApplication
+    public class AntiFraudApplication {
+        public static void main(String[] args) {
+            SpringApplication.run(AntiFraudApplication.class, args);
+        }
+    }
+  learner_created: false
 feedback_link: https://hyperskill.org/learn/step/18071#comment
 status: Solved
 feedback:
   message: Congratulations!
-  time: Mon, 02 May 2022 14:14:39 UTC
-record: -1
+  time: Mon, 02 May 2022 14:20:49 UTC
+record: 5

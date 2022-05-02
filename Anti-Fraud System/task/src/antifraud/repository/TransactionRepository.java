@@ -13,4 +13,8 @@ import java.util.List;
 public interface TransactionRepository extends CrudRepository<Transaction, Long> {
 
     List<Transaction> findAllByDateBetweenAndNumber(@Param("startDate") LocalDateTime dateStart, @Param("endDate") LocalDateTime dateEnd, String number);
+
+    List<Transaction> findAll();
+
+    List<Transaction> findAllByNumber(String number);
 }

@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.NumberFormat;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
@@ -53,4 +54,11 @@ public class Transaction {
 
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime date;
+
+    @Enumerated(value = EnumType.STRING)
+    private TransType result;
+
+    @Nullable
+    @Enumerated(value = EnumType.STRING)
+    private FeedbackType feedback;
 }
